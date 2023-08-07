@@ -9,17 +9,16 @@
       "matches": ["https://*/*"]
     }
   ],
-  "permissions": ["activeTab"],
+  "permissions": ["storage"],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+  "background": {
+    "service_worker": "sw/background.js"
+  },
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": "./images/icon-512.png"
-  },
-  "commands": {
-    "_execute_action": {
-      "suggested_key": {
-        "default": "Ctrl+B",
-        "mac": "Command+B"
-      }
-    }
   }
 }

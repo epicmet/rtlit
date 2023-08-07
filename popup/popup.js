@@ -1,5 +1,9 @@
-const automaticRtlCheckbox = document.querySelector("#automatic-rtl");
+const goToOptionsButton = document.querySelector("#go-to-options");
 
-automaticRtlCheckbox.addEventListener("change", () => {
-  console.log("Automatic RTL", automaticRtlCheckbox.checked);
+goToOptionsButton.addEventListener("click", () => {
+  if (chrome.runtime.openOptionsPage) {
+    chrome.runtime.openOptionsPage();
+  } else {
+    window.open(chrome.runtime.getURL("options/options.html"));
+  }
 });

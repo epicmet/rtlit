@@ -12,5 +12,9 @@ function rtlit(targets) {
   });
 }
 
-rtlit(parapraphs);
-rtlit(divs);
+chrome.storage.sync.get({ automaticRtl: true }, (items) => {
+  if (items.automaticRtl) {
+    rtlit(parapraphs);
+    rtlit(divs);
+  } 
+});
