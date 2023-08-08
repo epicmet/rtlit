@@ -7,8 +7,70 @@
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <h1>RTLIT</h1>
-    <button id="go-to-options">Settings</button>
+    <main>
+      <header>
+        <h1><span>rtl</span>it</h1>
+        <div class="pointy-underline">
+          <svg
+            viewBox="0 0 374 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="Line 1"
+              d="M0.292893 7.29289C-0.0976311 7.68342 -0.0976311 8.31658 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41421 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292893 7.29289ZM373.707 8.70711C374.098 8.31658 374.098 7.68342 373.707 7.29289L367.343 0.928932C366.953 0.538408 366.319 0.538408 365.929 0.928932C365.538 1.31946 365.538 1.95262 365.929 2.34315L371.586 8L365.929 13.6569C365.538 14.0474 365.538 14.6805 365.929 15.0711C366.319 15.4616 366.953 15.4616 367.343 15.0711L373.707 8.70711ZM1 9L373 9L373 7L1 7L1 9Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+      </header>
+      <section class="black-list-container">
+        <p class="black-list-title">blacklist:</p>
+        <div class="black-lists">
+          <!-- Template  -->
+          <div class="black-list-item current">
+            <p class="black-list-website">www.current.net</p>
+            <div class="black-list-icon">a</div>
+          </div>
+          <!-- Template  -->
+          <div class="black-list-item">
+            <p class="black-list-website">www.google.com</p>
+            <div class="black-list-icons">
+              <div class="black-list-icon">d</div>
+            </div>
+          </div>
+          <!-- Template  -->
+          <div class="black-list-item">
+            <p class="black-list-website">www.foo.com</p>
+            <div class="black-list-icons">
+              <div class="black-list-icon">d</div>
+            </div>
+          </div>
+          <!-- Template  -->
+        </div>
+      </section>
+      <section class="buttons-container">
+        <div class="btn visual-select-btn coming-soon" id="visual-select-btn">
+          visual select
+        </div>
+        <div id="go-to-options" class="">s</div>
+        <div class="toggle-autortl">
+          <div class="btn toggle-btn on active">on</div>
+          <div class="btn toggle-btn off">off</div>
+        </div>
+      </section>
+      <footer class="links-container">
+        <a target="_blank" href="https://www.google.com" class="link donate"
+          >donate</a
+        >
+        <a
+          target="_blank"
+          href="https://www.github.com/mahdiAghaei1/rtlit"
+          class="link"
+          >source code</a
+        >
+      </footer>
+    </main>
 
     <script src="./popup.js"></script>
   </body>

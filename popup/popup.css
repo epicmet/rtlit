@@ -1,4 +1,177 @@
-body {
+.debug {
+  border: 1px solid red !important;
+}
+
+html {
+  --vertical-gap: 10px;
+
+  --primary-color: #8d86e0;
+  --primary-color-background: #8d86e033;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 100%;
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  background-color: var(--primary-color-background);
+}
+
+main {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vertical-gap);
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+h1 > span {
+  margin-right: 1px;
+  color: var(--primary-color);
+}
+
+.pointy-underline {
+  width: 100%;
+}
+
+.black-list-container {
+  width: 110%;
+  display: flex;
+  flex-direction: column;
+}
+
+.black-list-title {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.black-lists {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 1%;
+}
+
+.black-list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.black-list-item:not(:last-child) {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.black-list-item.current {
+  opacity: 0.5;
+}
+
+.black-list-website {
+  font-size: 14px;
+  justify-self: start;
+  flex-grow: 7;
+  color: var(--primary-color);
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 14px 8px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn.coming-soon {
+  opacity: 0.5;
+}
+
+.visual-select-btn {
+  text-transform: capitalize;
+  position: relative;
+}
+
+.btn.coming-soon::after {
+  content: "coming soon!";
+  position: absolute;
+  top: 100%;
+  font-size: 8px;
+}
+
+.toggle-autortl {
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle-btn {
+  width: 50%;
+  height: 100%;
+  text-transform: uppercase;
+}
+
+.toggle-btn.active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: calc(var(--vertical-gap) / 2) 0;
+}
+
+.link {
+  text-transform: capitalize;
+  font-size: 12px;
+}
+
+.link.donate {
+}
+
+.link:focus:active {
+  color: #ffffff;
+}
+
+.link:visited {
+  color: var(--primary-color);
 }
