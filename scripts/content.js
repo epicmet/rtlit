@@ -6,7 +6,8 @@ function rtlit(targets) {
   const arabicLetterRegex = /[\u0600-\u06FF]/;
 
   targets.forEach((target) => {
-    if (target.textContent.slice(0, 1).match(arabicLetterRegex)) {
+    if (target.innerHTML.slice(0, 1).match(arabicLetterRegex)) {
+      console.log(target);
       target.style.direction = "rtl";
     }
   });
@@ -16,5 +17,5 @@ chrome.storage.sync.get({ automaticRtl: true }, (items) => {
   if (items.automaticRtl) {
     rtlit(parapraphs);
     rtlit(divs);
-  } 
+  }
 });
