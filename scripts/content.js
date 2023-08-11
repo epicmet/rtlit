@@ -9,8 +9,11 @@ class Rtlit {
   styleEl = null;
   currentUrl = new URL(document.URL);
   blacklisted = false;
+  autoRtl = true;
 
-  constructor() {
+  constructor(autoRtl = true) {
+    this.autoRtl = autoRtl;
+
     const parapraphs = document.querySelectorAll("p");
     const spans = document.querySelectorAll("span");
 
@@ -92,7 +95,7 @@ class Rtlit {
       throw new Error("Tried to add style tag before creating it");
     }
 
-    if (this.blacklisted) {
+    if (this.blacklisted || !this.autoRtl) {
       return;
     }
 
@@ -109,6 +112,8 @@ class Rtlit {
   addStorageEventListener() {
     chrome.storage.sync.onChanged.addListener((changes) => {
       if (changes.automaticRtl) {
+        this.autoRtl = changes.automaticRtl.newValue;
+
         if (changes.automaticRtl.newValue) {
           this.addStyleTag();
         } else {
@@ -143,6 +148,8 @@ class Rtlit {
   }
 }
 
-const rtlit = new Rtlit();
+chrome.storage.sync.get("automaticRtl", (items) => {
+  const rtlit = new Rtlit(items.automaticRtl);
 
-rtlit.init();
+  rtlit.init();
+});
