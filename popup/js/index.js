@@ -22,18 +22,18 @@ function createBlackListWebsite({ website }) {
   p.classList.add("black-list-website");
   p.textContent = website;
 
-  const iconSpan = document.createElement("span");
-  iconSpan.classList.add("black-list-icon");
-  iconSpan.textContent = "d";
+  const iconImg = document.createElement("img");
+  iconImg.classList.add("black-list-icon");
+  iconImg.src = "./x.svg";
 
-  iconSpan.addEventListener("click", () => {
+  iconImg.addEventListener("click", () => {
     const newList = blacklistedWebsites.filter((w) => w !== website);
     chrome.storage.sync.set({ blacklist: newList }, () => {
       itemDiv.remove();
     });
   });
 
-  itemDiv.append(p, iconSpan);
+  itemDiv.append(p, iconImg);
 
   return itemDiv;
 }

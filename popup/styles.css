@@ -119,6 +119,8 @@ h1 > span {
 
 .black-list-icon {
   cursor: pointer;
+  max-width: 20px;
+  height: 100%;
 }
 
 .buttons-container {
@@ -153,6 +155,10 @@ h1 > span {
   position: absolute;
   top: 100%;
   font-size: 8px;
+}
+
+#go-to-options {
+  max-width: 20px;
 }
 
 .toggle-autortl {
