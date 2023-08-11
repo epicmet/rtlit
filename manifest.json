@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "rtlit",
-  "description": "Change the direction of any text to rtl or ltr in you webpage",
+  "description": "Fix the corrupted RTL texts on your webpages",
   "version": "0.0.1",
   "content_scripts": [
     {
