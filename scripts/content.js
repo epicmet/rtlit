@@ -6,6 +6,7 @@ class Rtlit {
   arabicLetterRegex = /[\u0600-\u06FF]/;
   targetElements = [];
   changedElements = [];
+  textInputElements = [];
   styleEl = null;
   currentUrl = new URL(document.URL);
   blacklisted = false;
@@ -15,6 +16,15 @@ class Rtlit {
     const spans = document.querySelectorAll("span");
 
     this.targetElements = [...this.targetElements, ...parapraphs, ...spans];
+
+    const textareas = document.querySelectorAll("textarea");
+    const inputs = document.querySelectorAll("input[type=text]");
+
+    this.textInputElements = [
+      ...this.textInputElements,
+      ...textareas,
+      ...inputs,
+    ];
 
     this.shouldRTL();
   }
@@ -27,6 +37,7 @@ class Rtlit {
 
     this.observeAddedNodes();
     this.addStorageEventListener();
+    this.handleDirAttr("add");
   }
 
   shouldRTL() {
@@ -51,8 +62,10 @@ class Rtlit {
         this.blacklisted = nextState;
         if (this.blacklisted) {
           this.removeStyleTag();
+          this.handleDirAttr("remove");
         } else {
           this.addStyleTag();
+          this.handleDirAttr("add");
         }
       }
     });
@@ -111,8 +124,10 @@ class Rtlit {
       if (changes.automaticRtl) {
         if (changes.automaticRtl.newValue) {
           this.addStyleTag();
+          this.handleDirAttr("add");
         } else {
           this.removeStyleTag();
+          this.handleDirAttr("remove");
         }
       }
 
@@ -122,6 +137,19 @@ class Rtlit {
     });
   }
 
+  handleDirAttr(mode = "add", targets = this.textInputElements) {
+    if (mode === "add") {
+      if (this.blacklisted) {
+        return;
+      }
+      targets.forEach((target) => {
+        target.dir = "auto";
+      });
+    } else if (mode === "remove") {
+      targets.forEach((target) => target.removeAttribute("dir"));
+    }
+  }
+
   observeAddedNodes(target = document.body) {
     const MutationObserver =
       window.MutationObserver || window.WebKitMutationObserver;
@@ -129,7 +157,21 @@ class Rtlit {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
           if (node instanceof HTMLElement) {
-            this.addRtlClass(node);
+            if (node.nodeName === "IFRAME") {
+              this.addRtlClass(node.contentDocument.body);
+            } else if (
+              node.nodeName === "TEXTAREA" ||
+              node.nodeName === "INPUT"
+            ) {
+              this.textInputElements.push(node);
+              this.handleDirAttr("add", [node]);
+              // WARNING: Is this really a good thing ?
+            } else if (node.nodeName === "P" && node.innerHTML === "") {
+              this.textInputElements.push(node);
+              this.handleDirAttr("add", [node]);
+            } else {
+              this.addRtlClass(node);
+            }
           }
         });
       });
