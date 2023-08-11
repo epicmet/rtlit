@@ -10,10 +10,6 @@
     }
   ],
   "permissions": ["storage"],
-  "options_ui": {
-    "page": "options/options.html",
-    "open_in_tab": false
-  },
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
