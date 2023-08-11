@@ -164,6 +164,7 @@ h1 > span {
 .toggle-autortl {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .toggle-btn {
