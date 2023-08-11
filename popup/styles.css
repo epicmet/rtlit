@@ -98,8 +98,27 @@ h1 > span {
 .black-list-website {
   font-size: 14px;
   justify-self: start;
-  flex-grow: 7;
+  flex-grow: 5;
   color: var(--primary-color);
+}
+
+.black-list-website.input {
+  outline: none;
+  border: none;
+  margin-right: 10px;
+}
+
+.black-list-website.input.error {
+  border: 1px solid red;
+}
+
+.black-list-website.input::placeholder {
+  color: var(--primary-color);
+  opacity: 0.4;
+}
+
+.black-list-icon {
+  cursor: pointer;
 }
 
 .buttons-container {

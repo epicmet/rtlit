@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ automaticRtl: true }, () => {
+  chrome.storage.sync.set({ automaticRtl: true, blacklist: [] }, () => {
     chrome.action.setBadgeText({
       text: "ON",
     });

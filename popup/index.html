@@ -4,7 +4,7 @@
     <title>Rtlit</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./popup.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main>
@@ -27,25 +27,35 @@
       <section class="black-list-container">
         <p class="black-list-title">blacklist:</p>
         <div class="black-lists">
-          <!-- Template  -->
-          <div class="black-list-item current">
-            <p class="black-list-website">www.current.net</p>
-            <div class="black-list-icon">a</div>
-          </div>
-          <!-- Template  -->
           <div class="black-list-item">
-            <p class="black-list-website">www.google.com</p>
-            <div class="black-list-icons">
-              <div class="black-list-icon">d</div>
-            </div>
+            <!-- <form id="black-list-form"> -->
+              <input
+                id="black-list-input"
+                class="black-list-website input"
+                placeholder="google.com"
+              />
+              <span id="black-list-add-button" class="black-list-icon">a</span>
+            <!-- </form> -->
           </div>
           <!-- Template  -->
-          <div class="black-list-item">
-            <p class="black-list-website">www.foo.com</p>
-            <div class="black-list-icons">
-              <div class="black-list-icon">d</div>
-            </div>
-          </div>
+          <!-- <div class="black-list-item current"> -->
+          <!--   <p class="black-list-website">www.current.net</p> -->
+          <!--   <span class="black-list-icon">a</span> -->
+          <!-- </div> -->
+          <!-- Template  -->
+          <!-- <div class="black-list-item"> -->
+          <!--   <p class="black-list-website">www.google.com</p> -->
+          <!--   <div class="black-list-icons"> -->
+          <!--     <span class="black-list-icon">d</span> -->
+          <!--   </div> -->
+          <!-- </div> -->
+          <!-- Template  -->
+          <!-- <div class="black-list-item"> -->
+          <!--   <p class="black-list-website">www.foo.com</p> -->
+          <!--   <div class="black-list-icons"> -->
+          <!--     <span class="black-list-icon">d</span> -->
+          <!--   </div> -->
+          <!-- </div> -->
           <!-- Template  -->
         </div>
       </section>
@@ -72,6 +82,6 @@
       </footer>
     </main>
 
-    <script src="./popup.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>

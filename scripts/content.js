@@ -7,12 +7,16 @@ class Rtlit {
   targetElements = [];
   changedElements = [];
   styleEl = null;
+  currentUrl = new URL(document.URL);
+  blacklisted = false;
 
   constructor() {
     const parapraphs = document.querySelectorAll("p");
     const spans = document.querySelectorAll("span");
 
     this.targetElements = [...this.targetElements, ...parapraphs, ...spans];
+
+    this.shouldRTL();
   }
 
   init() {
@@ -23,6 +27,35 @@ class Rtlit {
 
     this.observeAddedNodes();
     this.addStorageEventListener();
+  }
+
+  shouldRTL() {
+    let nextState = this.blacklisted;
+
+    chrome.storage.sync.get("blacklist", (items) => {
+      if (!items.blacklist) {
+        nextState = false;
+      } else if (Array.isArray(items.blacklist)) {
+        // TODO: I can improve it later
+        nextState = items.blacklist.some((url) => {
+          try {
+            const blacklistedURL = new URL(url);
+            return blacklistedURL.host === this.currentUrl.host;
+          } catch (e) {
+            return url === this.currentUrl.host;
+          }
+        });
+      }
+
+      if (nextState !== this.blacklisted) {
+        this.blacklisted = nextState;
+        if (this.blacklisted) {
+          this.removeStyleTag();
+        } else {
+          this.addStyleTag();
+        }
+      }
+    });
   }
 
   addRtlClass(target) {
@@ -59,6 +92,10 @@ class Rtlit {
       throw new Error("Tried to add style tag before creating it");
     }
 
+    if (this.blacklisted) {
+      return;
+    }
+
     document.head.appendChild(this.styleEl);
   }
 
@@ -71,10 +108,16 @@ class Rtlit {
 
   addStorageEventListener() {
     chrome.storage.sync.onChanged.addListener((changes) => {
-      if (changes.automaticRtl.newValue) {
-        this.addStyleTag();
-      } else {
-        this.removeStyleTag();
+      if (changes.automaticRtl) {
+        if (changes.automaticRtl.newValue) {
+          this.addStyleTag();
+        } else {
+          this.removeStyleTag();
+        }
+      }
+
+      if (changes.blacklist) {
+        this.shouldRTL();
       }
     });
   }
@@ -95,9 +138,9 @@ class Rtlit {
     observer.observe(target, { childList: true, subtree: true });
   }
 
-  log = (...toPrint) => {
+  log(...toPrint) {
     console.log("RTLIT: ", ...toPrint);
-  };
+  }
 }
 
 const rtlit = new Rtlit();
