@@ -11,7 +11,7 @@ Using this browser extension could help you out to fix these type of texts.
 Unfortunatly I could not publish this extension on Chrome Web Store. But you can download the zip file [release](https://www.github.com/mahdiAghaei1/rtlit/releases) and follow these instructions:
 
 1. Download the zip release
-2. Unzip it and keep it somewhere in you system
+2. Unzip it and keep it in a directory
 3. Go to `chrome://extension`
 4. Turn on developer mode
 5. Click on Load unpacked extension
