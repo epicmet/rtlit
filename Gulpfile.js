@@ -11,10 +11,10 @@ const injectPaths = {
 };
 
 const readPaths = {
-  POPUP: "./popup/*",
+  POPUP: "./popup/**/*",
   MANIFEST: "./manifest.json",
-  ASSESTS: "./images/*",
-  SW: "./sw/*",
+  ASSESTS: "./images/**/*",
+  SW: "./sw/**/*",
 };
 
 function bundleContentScript(cb) {
