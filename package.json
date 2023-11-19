@@ -10,8 +10,8 @@
     "build": "gulp"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.251",
     "@types/gulp": "^4.0.17",
-    "chrome-types": "^0.1.220",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "^5.2.2"
