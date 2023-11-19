@@ -4,9 +4,9 @@ class Rtlit {
 
   // link: https://stackoverflow.com/questions/4446244/how-to-check-if-any-arabic-character-exists-in-the-string-javascript
   arabicLetterRegex = /[\u0600-\u06FF]/;
-  targetElements = [];
-  changedElements = [];
-  styleEl = null;
+  targetElements: HTMLElement[] = [];
+  changedElements: HTMLElement[] = [];
+  styleEl: HTMLStyleElement | null = null;
   currentUrl = new URL(document.URL);
   blacklisted = false;
   autoRtl = true;
@@ -17,7 +17,11 @@ class Rtlit {
     const parapraphs = document.querySelectorAll("p");
     const spans = document.querySelectorAll("span");
 
-    this.targetElements = [...this.targetElements, ...parapraphs, ...spans];
+    this.targetElements = [
+      ...this.targetElements,
+      ...Array.from(parapraphs),
+      ...Array.from(spans),
+    ];
 
     this.shouldRTL();
   }
@@ -61,7 +65,9 @@ class Rtlit {
     });
   }
 
-  addRtlClass(target) {
+  // FIXME: `target` should not be ChildNode!
+  // Either handle the ChildNode situation or just pass HTMLElement
+  addRtlClass(target: HTMLElement | ChildNode) {
     if (target instanceof HTMLElement) {
       const firstLetter = target.innerHTML.slice(0, 1);
       if (!!firstLetter && firstLetter.match(this.arabicLetterRegex)) {
@@ -122,14 +128,13 @@ class Rtlit {
       }
 
       if (changes.blacklist) {
+        // TODO: I can just pass the new blacklist here! Why am I getting it from the setting again in the function below?
         this.shouldRTL();
       }
     });
   }
 
   observeAddedNodes(target = document.body) {
-    const MutationObserver =
-      window.MutationObserver || window.WebKitMutationObserver;
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
@@ -143,7 +148,7 @@ class Rtlit {
     observer.observe(target, { childList: true, subtree: true });
   }
 
-  log(...toPrint) {
+  log(...toPrint: any[]) {
     console.log("RTLIT: ", ...toPrint);
   }
 }
