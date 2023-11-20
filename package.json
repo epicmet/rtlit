@@ -7,13 +7,17 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "prev:popup": "live-server popup"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.251",
     "@types/gulp": "^4.0.17",
+    "@types/mithril": "^2.2.4",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "live-server": "1.2.1",
     "typescript": "^5.2.2"
-  }
+  },
+  "dependencies": {}
 }

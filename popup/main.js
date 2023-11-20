@@ -1,3 +1,15 @@
+// Until this issue: https://github.com/microsoft/TypeScript/issues/41825#issuecomment-1474529135
+// has not been done, I have to do a poor man type import in JSDoc as you see below.
+
+/**
+ * @type {import("../node_modules/@types/mithril/index.d.ts"}
+ */
+const { render } = m;
+
+// render(document.body, "hello world");
+
+/////////////////////////////////////
+
 function getStorage(keys) {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(keys, (items) => {
