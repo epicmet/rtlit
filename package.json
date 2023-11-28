@@ -5,10 +5,14 @@
   "repository": "git@github.com:MahdiAghaei1/rtlit.git",
   "author": "Mahdi Aghaei <mahd.aghaei@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">= 18.14.2"
+  },
   "private": false,
   "scripts": {
     "build": "gulp",
-    "prev:popup": "live-server popup"
+    "prev:popup": "live-server popup",
+    "postbuild": "zip -r ./build/release.zip ./build"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.251",
