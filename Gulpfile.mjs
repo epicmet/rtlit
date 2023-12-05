@@ -1,4 +1,5 @@
 import fsp from "node:fs/promises";
+import fs from "node:fs";
 import path from "node:path";
 
 import gulp from "gulp";
@@ -24,6 +25,10 @@ const readPaths = {
 };
 
 async function clean() {
+  if (!fs.existsSync(BUILD_DIR)) {
+    return Promise.resolve();
+  }
+
   const res = await fsp.readdir(BUILD_DIR, { withFileTypes: true });
 
   for (const d of res) {
