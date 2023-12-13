@@ -6,20 +6,24 @@ If you use a RightToLeft language, then you have seen what would happen if a web
 Using this browser extension could help you out to fix these type of texts.
 ![rtled-image](./.github/images/rtled.png)
 
+## Privacy
+
+This extension does not collect any data, usage or history from your browser.
+
 ## Installation
 
-Unfortunatly I could not publish this extension on Chrome Web Store. But you can download the zip file [release](https://www.github.com/mahdiAghaei1/rtlit/releases) and follow these instructions:
+### Manual
+
+You can go to [releases](https://www.github.com/mahdiAghaei1/rtlit/releases) and follow these instructions:
 
 1. Download the zip release
 2. Unzip it and keep it in a directory
-3. Go to `chrome://extension`
-4. Turn on developer mode
-5. Click on Load unpacked extension
-6. Choose to the directory you just unziped
-7. Enjoy!
+3. Go to `chrome://extension` on your browser (Turn on developer mode if it's off)
+4. Click on `Load unpacked` button
+5. Choose to the unziped extension
+6. Enjoy!
 
 If you had any problem following these instructions, you can use [this](https://browsertouse.com/blog/23621/install-chrome-extension-from-zip/) tutorial too.
-Sorry if it's a lot of work. Hopfully I can release this extension on the official Chrome Web Store soon.
 
 ## Support
 
