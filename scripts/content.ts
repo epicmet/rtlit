@@ -14,12 +14,12 @@ class Rtlit {
   constructor(autoRtl = true) {
     this.autoRtl = autoRtl;
 
-    const parapraphs = document.querySelectorAll("p");
+    const paragraphs = document.querySelectorAll("p");
     const spans = document.querySelectorAll("span");
 
     this.targetElements = [
       ...this.targetElements,
-      ...Array.from(parapraphs),
+      ...Array.from(paragraphs),
       ...Array.from(spans),
     ];
 
