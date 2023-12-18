@@ -22,7 +22,7 @@ function getStorage(keys) {
   });
 }
 
-const blacklistedWebsites = await getStorage("blacklist");
+const blacklistedWebsites = getStorage("blacklist");
 
 const blacklist = document.querySelector(".black-lists");
 
