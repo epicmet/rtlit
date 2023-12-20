@@ -41,7 +41,7 @@ In order to build this project from source you need to install the dependencies 
 $ pnpm install
 ```
 
-And them run the build command (which uses [Gulp](https://gulpjs.com/))
+And then run the build command
 
 ```console
 $ pnpm run build

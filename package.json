@@ -10,8 +10,10 @@
   },
   "private": false,
   "scripts": {
-    "build": "gulp",
+    "build": "webpack",
+    "build:chrome": "gulp dist:chrome",
     "prev:popup": "live-server popup",
+    "prebuild": "rm -rf ./build",
     "postbuild": "zip -r ./build/release.zip ./build"
   },
   "devDependencies": {
@@ -20,8 +22,11 @@
     "@types/mithril": "^2.2.4",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "html-webpack-plugin": "^5.5.4",
     "live-server": "1.2.1",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {}
+    "mini-css-extract-plugin": "^2.7.6",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
 }
