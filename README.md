@@ -10,15 +10,18 @@ Using this browser extension could help you out to fix these type of texts.
 
 ## Installation
 
-### Chrome Webstore
+### Official releases
 
-Download the official stable release from [Chrome Webstore](https://chromewebstore.google.com/u/2/detail/rtlit/jmaeeniakbbmmnncohddgdlnghffdgad)!
+Download the official stable releases from:
 
-### Manual
+- [Chrome Webstore](https://chromewebstore.google.com/u/2/detail/rtlit/jmaeeniakbbmmnncohddgdlnghffdgad)
+- [Mozilla addons (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/rtlit/)
 
-**TIP:** I would suggest to download [the official release](#chrome-webstore). However, you can still install the extension manually.
+### Manual (Other browsers)
 
-Go to [releases](https://www.github.com/mahdiAghaei1/rtlit/releases) tab to get the built extension or clone the project and follow the [development](#development) section to build the project first and then follow these instructions:
+**TIP:** I would suggest to download [the official releases](#official-releases). However, you can still install the extension manually.
+
+You can go to [releases](https://www.github.com/mahdiAghaei1/rtlit/releases) tab to get the built extension or clone the project and follow the [development](#development) section to build the project first and then search for "how to install browser extension from source/zip on your favorite browser". Hopfully in the future we have official release for all major browsers. For example you can follow these instructions for chrome:
 
 1. Keep the built project in a directory (somewhere you install your other softwares)
 2. Go to `chrome://extension` on your browser
@@ -26,8 +29,6 @@ Go to [releases](https://www.github.com/mahdiAghaei1/rtlit/releases) tab to get 
 4. Click on `Load unpacked` button
 5. Choose to the build directory of the extension
 6. Enjoy!
-
-If you had any problem following these instructions, you can search for [installing chrome extension from zip](https://google.com/search?q=installing+chrome+extension+from+zip) on your favorite search engine.
 
 ## Privacy
 
