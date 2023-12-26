@@ -1,3 +1,7 @@
+console.log(
+  "-------------------------- RTLIT Content script loadead --------------------------",
+);
+
 class Rtlit {
   CLASS_NAME = "RTLIT_RTL";
   STYLE_ID = "RTLIT_STYLE";
@@ -10,6 +14,8 @@ class Rtlit {
   currentUrl = new URL(document.URL);
   blacklisted = false;
   autoRtl = true;
+
+  foo = 0;
 
   constructor(autoRtl = true) {
     this.autoRtl = autoRtl;
@@ -27,6 +33,7 @@ class Rtlit {
   }
 
   init() {
+    console.log("---------------- RTLIT: init ----------------");
     this.createStyleTag();
     this.addStyleTag();
 
@@ -135,10 +142,33 @@ class Rtlit {
   }
 
   observeAddedNodes(target = document.body) {
+    console.log("---------------- RTLIT: observer ----------------");
+
     const observer = new MutationObserver((mutations) => {
+      if (this.foo > 1_000) {
+        return;
+      }
+
+      const id = parseInt((Date.now() * Math.random()).toString().slice(0, 2));
+      console.log("-------- RTLIT: Mutations", id);
+
       mutations.forEach((mutation) => {
+        this.foo++;
+
+        if (this.foo > 1_000) {
+          return;
+        }
+
+        console.log("----- RTLIT: mu", mutation);
+
         mutation.addedNodes.forEach((node) => {
-          if (node instanceof HTMLElement) {
+          if (this.foo > 1_000) {
+            return;
+          }
+          if (
+            node instanceof HTMLElement &&
+            !node.classList.contains(this.CLASS_NAME)
+          ) {
             this.addRtlClass(node);
           }
         });
