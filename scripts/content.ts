@@ -138,7 +138,11 @@ class Rtlit {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
-          if (node instanceof HTMLElement) {
+          if (
+            node instanceof HTMLElement &&
+            !node.classList.contains(this.CLASS_NAME) &&
+            !this.isAnEditingScope(mutation.target)
+          ) {
             this.addRtlClass(node);
           }
         });
@@ -146,6 +150,22 @@ class Rtlit {
     });
 
     observer.observe(target, { childList: true, subtree: true });
+  }
+
+  // FIXME: This is just a quickfix to solve `trello` and similar websites that keep
+  // the editor and preview in sync.
+  // Here I check if the target is an editing scope because if the website keeps the
+  // editor and preview in sync, when I change one of them by adding the class name,
+  // it gets to an infinite loop by changing both at the same time.
+  isAnEditingScope(target: Node) {
+    if (
+      target instanceof HTMLDivElement &&
+      target.getAttribute("role") === "textbox"
+    ) {
+      return true;
+    }
+
+    return false;
   }
 
   log(...toPrint: any[]) {

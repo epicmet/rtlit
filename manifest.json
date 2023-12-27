@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "rtlit",
   "description": "Fix the corrupted RTL texts on your webpages",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
