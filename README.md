@@ -39,13 +39,13 @@ This extension does not collect any data, usage or history from your browser.
 In order to build this project from source you need to install the dependencies with your preferred package manager
 
 ```console
-$ pnpm install
+$ yarn install
 ```
 
 And them run the build command (which uses [Gulp](https://gulpjs.com/))
 
 ```console
-$ pnpm run build
+$ yarn run build
 ```
 
 ## Browser Support
