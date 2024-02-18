@@ -1,6 +1,6 @@
 {
   "name": "rtlit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fix RightToLeft texts when you are browsing on the web",
   "repository": "git@github.com:MahdiAghaei1/rtlit.git",
   "author": "Mahdi Aghaei <mahd.aghaei@gmail.com>",
@@ -10,6 +10,8 @@
   },
   "private": false,
   "scripts": {
+    "wxt:dev": "webextension-toolbox dev -s src",
+    "wxt:build": "webextension-toolbox build -s src",
     "build": "gulp",
     "prev:popup": "live-server popup",
     "postbuild": "zip -r ./build/release.zip ./build"
@@ -23,5 +25,7 @@
     "live-server": "1.2.1",
     "typescript": "^5.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@webextension-toolbox/webextension-toolbox": "^6.2.0"
+  }
 }

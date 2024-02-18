@@ -21,5 +21,10 @@
   },
   "action": {
     "default_popup": "popup/index.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mahd.aghaei@gmail.com"
+    }
   }
 }

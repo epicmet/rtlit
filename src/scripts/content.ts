@@ -106,6 +106,7 @@ class Rtlit {
     }
 
     document.head.appendChild(this.styleEl);
+    document.body.append("hi");
   }
 
   removeStyleTag() {

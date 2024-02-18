@@ -1,6 +1,8 @@
 // Until this issue: https://github.com/microsoft/TypeScript/issues/41825#issuecomment-1474529135
 // has not been done, I have to do a poor man type import in JSDoc as you see below.
 
+import { m } from "./mithril-v2.2.2.min.js";
+
 /**
  * @type {import("../node_modules/@types/mithril/index.d.ts"}
  */
