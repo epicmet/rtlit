@@ -1,6 +1,6 @@
 {
   "name": "rtlit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fix RightToLeft texts when you are browsing on the web",
   "repository": "git@github.com:MahdiAghaei1/rtlit.git",
   "author": "Mahdi Aghaei <mahd.aghaei@gmail.com>",
