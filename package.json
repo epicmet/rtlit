@@ -10,15 +10,27 @@
   },
   "private": false,
   "scripts": {
-    "build": "gulp",
-    "prev:popup": "live-server popup",
-    "postbuild": "zip -r ./build/release.zip ./build"
+    "prev:popup": "serve src/popup",
+    "build": "node scripts/build.mjs",
+    "build:w": "cross-env ESB_WATCH=true node scripts/build.mjs",
+    "run:chrome": "web-ext --target=chromium -s build-chrome run",
+    "run:firefox": "web-ext --target=firefox -s build-firefox run",
+    "lint": "concurrently 'npm run lint:webext' 'npm run lint:ts:script'",
+    "lint:ts:script": "tsc --noEmit -p src/popup/tsconfig.json",
+    "lint:webext": "web-ext -s build lint",
+    "clean": "concurrently 'npm run clean:build' 'npm run clean:dist'",
+    "clean:dist": "node scripts/rmdir.js dist",
+    "clean:build": "node scripts/rmdir.js build",
+    "release": ""
   },
   "devDependencies": {
     "@types/chrome": "^0.0.251",
     "@types/mithril": "^2.2.4",
     "@types/node": "^20.11.19",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.20.0",
+    "serve": "^14.2.1",
     "typescript": "^5.2.2",
     "web-ext": "^7.11.0"
   },
