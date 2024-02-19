@@ -36,21 +36,11 @@ This extension does not collect any data, usage or history from your browser.
 
 ## Development
 
-In order to build this project from source you need to install the dependencies with your preferred package manager
-
-```console
-$ yarn install
-```
-
-And them run the build command (which uses [Gulp](https://gulpjs.com/))
-
-```console
-$ yarn run build
-```
+\<TBD\>
 
 ## Browser Support
 
-Right now this extension just works on chrome browser, in the future we would probably support other browsers too.
+Right now this extension just works on chrome and firefox browser, in the future we would probably support other browsers too.
 
 ## Contribution
 
