@@ -11,7 +11,8 @@
   "private": false,
   "scripts": {
     "prev:popup": "serve src/popup",
-    "build": "node scripts/build.mjs",
+    "build:chrome": "cross-env ESB_TARGET_BROWSER=chrome node scripts/build.mjs",
+    "build:firefox": "cross-env ESB_TARGET_BROWSER=firefox node scripts/build.mjs",
     "build:w": "cross-env ESB_WATCH=true node scripts/build.mjs",
     "run:chrome": "web-ext --target=chromium -s build-chrome run",
     "run:firefox": "web-ext --target=firefox -s build-firefox run",
