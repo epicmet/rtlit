@@ -1,4 +1,7 @@
+import fs from "node:fs/promises";
+
 import * as esbuild from "esbuild";
+import copy from "esbuild-plugin-copy";
 
 // TODO: Make an abstraction of all these common use cases.
 // Like logging, running jobs and build steps.
@@ -48,7 +51,7 @@ function onExit(fn) {
 
 // TODO: Functoins for moving things (html, and manifest.json)
 
-// TODO: Assets
+const TARGET_PATH = "build";
 
 /**
  * @type {esbuild.BuildOptions}
@@ -61,10 +64,20 @@ const buildOptions = {
     { in: "src/popup/main.js", out: "popup/main" },
   ],
   // tsconfig: "src/scripts/tsconfig.json",
-  outdir: "build",
+  outdir: TARGET_PATH,
   loader: { ".html": "copy" },
   write: true,
   bundle: true,
+  plugins: [
+    copy({
+      resolveFrom: "cwd",
+      assets: {
+        from: ['./src/images/*'],
+        to: [`./${TARGET_PATH}/images`]
+      },
+      watch: watchMode
+    })
+  ],
 };
 
 if (watchMode) {

@@ -30,6 +30,7 @@
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "esbuild": "^0.20.0",
+    "esbuild-plugin-copy": "^2.1.1",
     "serve": "^14.2.1",
     "typescript": "^5.2.2",
     "web-ext": "^7.11.0"
