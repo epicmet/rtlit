@@ -32,6 +32,7 @@ import copy from "esbuild-plugin-copy";
  * @property {string} version
  * @property {ContentScripts[]} content_scripts
  * @property {string[]} permissions
+ * @property {string[]} host_permissions
  * @property {Icons} icons
  * @property {Background} background
  * @property {Action} action
@@ -58,7 +59,10 @@ function log(...meta) {
 const watchMode = getBoolEnv("ESB_WATCH");
 const targetBrowser = process.env.ESB_TARGET_BROWSER;
 if (!targetBrowser) {
-  print("error", "Please specify the target browser via ESB_TARGET_BROWSER environment variable");
+  print(
+    "error",
+    "Please specify the target browser via ESB_TARGET_BROWSER environment variable",
+  );
   process.exit(1);
 }
 
@@ -118,27 +122,38 @@ class ManifestTrasnformer {
   }
 
   firefox() {
-    const fManifest = this.rawManifest
+    const fManifest = this.rawManifest;
 
     fManifest.background = {
-      scripts: ["sw/index.js"]
-    }
+      scripts: ["sw/index.js"],
+    };
 
     fManifest.browser_specific_settings = {
       gecko: {
-        id: "mahd@gmail.com"
-      }
-    }
+        id: "mahd.aghaei@gmail.com",
+      },
+    };
+
+    /* Right now I can only use v2 of manifest.json until I find a solution for
+     * injecting content script without user's explicit permission on each website.
+     */
+
+    fManifest.manifest_version = 2;
+
+    fManifest.browser_action = fManifest.action;
+    fManifest.action = undefined;
+
+    fManifest.host_permissions = undefined;
 
     return fManifest;
   }
 
   chrome() {
-    const cManifest = this.rawManifest
+    const cManifest = this.rawManifest;
 
     cManifest.background = {
-      service_worker: "sw/index.js"
-    }
+      service_worker: "sw/index.js",
+    };
 
     return cManifest;
   }
@@ -156,14 +171,19 @@ function createManifestPlugin(target) {
         /**
          * @type {Manifest}
          */
-        const rawManifest = JSON.parse(await fsp.readFile("./manifest.json", { encoding: "utf8" }));
+        const rawManifest = JSON.parse(
+          await fsp.readFile("./manifest.json", { encoding: "utf8" }),
+        );
 
         const manifest = new ManifestTrasnformer(rawManifest).build(target);
 
-        await fsp.writeFile(`${TARGET_PATH}/manifest.json`, JSON.stringify(manifest, null, 2));
+        await fsp.writeFile(
+          `${TARGET_PATH}/manifest.json`,
+          JSON.stringify(manifest, null, 2),
+        );
       });
     },
-  }
+  };
 }
 
 const TARGET_PATH = "build";
@@ -188,11 +208,11 @@ const buildOptions = {
       resolveFrom: "cwd",
       assets: [
         {
-          from: ['./src/images/*'],
-          to: [`./${TARGET_PATH}/images`]
+          from: ["./src/images/*"],
+          to: [`./${TARGET_PATH}/images`],
         },
       ],
-      watch: watchMode
+      watch: watchMode,
     }),
     createManifestPlugin(targetBrowser),
   ],

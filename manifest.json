@@ -6,10 +6,11 @@
   "content_scripts": [
     {
       "js": ["content-script/index.js"],
-      "matches": ["https://*/*", "file://*/*"]
+      "matches": ["http://*/*", "https://*/*", "file://*/*"]
     }
   ],
   "permissions": ["storage"],
+  "host_permissions": ["http://*/*", "https://*/*", "file://*/*"],
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
