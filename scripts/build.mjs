@@ -196,6 +196,7 @@ const buildOptions = {
     { in: "src/content-script/index.ts", out: "content-script/index" },
     { in: "src/sw/index.js", out: "sw/index" },
     { in: "src/popup/index.html", out: "popup/index" },
+    { in: "src/popup/styles.css", out: "popup/styles" },
     { in: "src/popup/main.js", out: "popup/main" },
   ],
   // tsconfig: "src/scripts/tsconfig.json",
