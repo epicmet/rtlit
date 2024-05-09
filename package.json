@@ -28,9 +28,9 @@
     "release": ""
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.251",
     "@types/mithril": "^2.2.4",
     "@types/node": "^20.11.19",
+    "@types/webextension-polyfill": "^0.10.7",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "esbuild": "^0.20.0",
@@ -39,5 +39,7 @@
     "typescript": "^5.2.2",
     "web-ext": "^7.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "webextension-polyfill": "^0.11.0"
+  }
 }

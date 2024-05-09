@@ -10,9 +10,11 @@ const { render } = m;
 
 /////////////////////////////////////
 
+import browser from "webextension-polyfill";
+
 function getStorage(keys) {
   return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(keys, (items) => {
+    browser.storage.sync.get(keys).then((items) => {
       if (typeof keys === "string") {
         resolve(items[keys]);
       } else {
@@ -40,7 +42,7 @@ function createBlackListWebsite({ website }) {
 
   iconImg.addEventListener("click", () => {
     const newList = blacklistedWebsites.filter((w) => w !== website);
-    chrome.storage.sync.set({ blacklist: newList }, () => {
+    browser.storage.sync.set({ blacklist: newList }).then(() => {
       itemDiv.remove();
     });
   });
@@ -63,7 +65,7 @@ function addNewBlacklistItem() {
   }
 
   const newList = [...blacklistedWebsites, website];
-  chrome.storage.sync.set({ blacklist: newList }, () => {
+  browser.storage.sync.set({ blacklist: newList }).then(() => {
     blacklistInput.value = "";
     const newItem = createBlackListWebsite({ website });
     blacklist.append(newItem);
@@ -115,18 +117,18 @@ function autoRtlHandleView(state = "on") {
   }
 }
 
-chrome.storage.sync.get({ automaticRtl: true }, (items) => {
+browser.storage.sync.get({ automaticRtl: true }).then((items) => {
   autoRtlHandleView(items.automaticRtl ? "on" : "off");
 });
 
 automaticRtlOn.addEventListener("click", () => {
-  chrome.storage.sync.set({ automaticRtl: true }, () => {
+  browser.storage.sync.set({ automaticRtl: true }).then(() => {
     autoRtlHandleView("on");
   });
 });
 
 automaticRtlOff.addEventListener("click", () => {
-  chrome.storage.sync.set({ automaticRtl: false }, () => {
+  browser.storage.sync.set({ automaticRtl: false }).then(() => {
     autoRtlHandleView("off");
   });
 });

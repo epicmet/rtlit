@@ -1,3 +1,5 @@
+import browser from "webextension-polyfill";
+
 class Rtlit {
   CLASS_NAME = "RTLIT_RTL";
   STYLE_ID = "RTLIT_STYLE";
@@ -39,7 +41,7 @@ class Rtlit {
   shouldRTL() {
     let nextState = this.blacklisted;
 
-    chrome.storage.sync.get("blacklist", (items) => {
+    browser.storage.sync.get("blacklist").then((items) => {
       if (!items.blacklist) {
         nextState = false;
       } else if (Array.isArray(items.blacklist)) {
@@ -116,7 +118,7 @@ class Rtlit {
   }
 
   addStorageEventListener() {
-    chrome.storage.sync.onChanged.addListener((changes) => {
+    browser.storage.sync.onChanged.addListener((changes) => {
       if (changes.automaticRtl) {
         this.autoRtl = changes.automaticRtl.newValue;
 
@@ -173,7 +175,7 @@ class Rtlit {
   }
 }
 
-chrome.storage.sync.get("automaticRtl", (items) => {
+browser.storage.sync.get("automaticRtl").then((items) => {
   const rtlit = new Rtlit(items.automaticRtl);
 
   rtlit.init();
